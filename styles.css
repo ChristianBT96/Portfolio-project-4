@@ -25,10 +25,12 @@ nav {
 
 section {
     height: 200px;
+    outline: red solid 1px;
+    margin: 0 5px 0 5px;
 }
 
 .intro {
-    margin: 10px 0 10px 0;
+    margin: 10px 5px 10px 5px;
     padding: 0 10px 0 10px;
     display: flex;
     justify-content: space-around;
@@ -39,6 +41,12 @@ section {
     outline: blue solid 1px;
     width: 40%;
 }
+
+.graph-4 div {
+    aspect-ratio: 1/1;
+    width: 400px;
+}
+
 
 footer {
     display: flex;
