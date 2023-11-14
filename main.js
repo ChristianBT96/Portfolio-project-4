@@ -69,7 +69,7 @@ const options = {
     chart: {
         height: 350,
         type: 'heatmap',
-        width: 600,
+        width: "50%",
     },
     dataLabels: {
         enabled: false
