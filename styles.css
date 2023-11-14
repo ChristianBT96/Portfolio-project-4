@@ -35,6 +35,7 @@ section {
 }
 
 .intro-left, .intro-right {
+    padding: 5px;
     outline: blue solid 1px;
     width: 40%;
 }
