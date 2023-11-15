@@ -153,7 +153,8 @@ latitudeLongitudeSpeciesData.forEach((birdStrike) => {
 /////////////// GAUGE JS SLIDER /////////////
 
 const slider = document.getElementById('slider');
-const spanElement = document.querySelector('.graph-5 span');
+const meterSpanElement = document.querySelector('.gauge-height');
+const animalSpanElement = document.querySelector('.killed-animals');
 
 const minimumRange = 0;
 const maximumRange = 10000; // 10km in m
@@ -198,5 +199,21 @@ gauge.set(1244); // set actual value
 // documentation: https://refreshless.com/nouislider/events-callbacks/
 slider.noUiSlider.on('update', function(values){
     gauge.set(values);
-    spanElement.innerHTML = `${parseInt(values)} meters`;
+    meterSpanElement.innerHTML = `${parseInt(values)} meters`;
+    updateAnimalSpan(values);
 });
+
+// TODO: MAKE THE INTERVALS CORRECT
+function updateAnimalSpan(values) {
+    let newValue = 0;
+
+    if (values < 1000) {
+        newValue = 7000;
+    } else if (values < 5000) {
+        newValue = 5000;
+    } else if (values < 9300) {
+        newValue = 1500;
+    }
+
+    animalSpanElement.innerText = `${newValue} animals has been killed at this height`;
+}
