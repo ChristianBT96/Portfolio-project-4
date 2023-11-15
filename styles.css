@@ -1,65 +1,135 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: "Comic Sans MS"; /* PREETTYY */
 }
+
+/* Color Palette */
+:root {
+    --color-1: #DAD7CD;
+    --color-2: #A3B18A;
+    --color-3: #588157;
+    --color-4: #3A5A40;
+    --color-5: #344E41;
+}
+
+/*************** HEADER ***************/
 
 header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    height: 10svh;
     width: 100%;
-    margin: 10px 0 0 0;
+    color: var(--color-1);
+    background-color: var(--color-5);
+    font-size: 20px;
 }
 
 nav {
     display: flex;
-    gap: 10px;
-    margin: 0 20px 0 0;
+    gap: 20px;
+    margin-right: 25px;
 }
 
+a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1 solid var(--color-1);
+} a:hover {
+    font-weight: bold;
+    transform: scale(1.1);
+  }
+
 .plane-logo {
-    width: 80px;
-    height: 50px;
-    margin-left: 20px;
+    width: 140px;
+    height: 80px;
+}
+
+/*************** HEADER ***************/
+
+main {
+    color: var(--color-5);
+    background-color: var(--color-1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 20px; /**** gap between sections ****/
+    padding-bottom: 50px;
 }
 
 section {
-    height: 200px;
-    outline: red solid 1px;
-    margin: 0 5px 0 5px;
-}
-
-.intro {
-    margin: 10px 5px 10px 5px;
-    padding: 0 10px 0 10px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 80%;
+    padding: 25px;
+    gap: 40px; /**** gap between header and content ****/
 }
 
-.intro-left, .intro-right {
-    padding: 5px;
-    outline: blue solid 1px;
-    width: 40%;
+.graph-2 .content,
+.graph-3 .content{
+    flex-direction: column;
+    width: 100%;
 }
 
-.graph-4 div {
-    aspect-ratio: 1/1;
-    width: 400px;
+.graph-2 .left,
+.graph-2 .right,
+.graph-3 .left,
+.graph-3 .right {
+    width: 100%;
 }
 
+.content {
+    display: flex;
+    justify-content: center;
+    gap: 50px; /**** gap between content ****/
+}
 
+.left, .right {
+    width: 50%;
+}
+
+/*************** FOOTER ***************/
 footer {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
     width: 100%;
-    background-color: #000;
-    color: #fff;
-    padding: 0 20px;
+    padding: 30px;
+    color: var(--color-1);
+    background-color: var(--color-5);
 }
 
 .footer-left, .footer-right {
     width: 40%;
 }
+/*************** FOOTER ***************/
 
+/*************** MEDIA ***************/
+@media screen and (max-width: 900px) {
+    .content {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .left, .right {
+        width: 100%;
+    }
+
+    header span {
+        display: none;
+    }
+
+    .graph-4 .content .left {
+        align-self: center;
+        max-width: 75%;
+    }
+
+}
+/*************** MEDIA ***************/
