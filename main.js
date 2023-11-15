@@ -1,27 +1,56 @@
 console.log("Hello World!");
 
+const barChartColor = "#588157"; // should be same color as css palette
+
 const speciesContext = document.querySelector('#species-chart').getContext('2d');
 
 // Make array with artist names and array with artist count
 speciesLabelArray = [];
 speciesCountDataArray = [];
 
-for (let i = 3; i < 25; i++) {
+for (let i = 3; i < 18; i++) {
     speciesLabelArray.push(speciesData[i].SPECIES);
     speciesCountDataArray.push(speciesData[i].COUNT);
 }
 
 // Creating species horizontal bar chart
+Chart.defaults.font.size = 18;
+
 const speciesChart = new Chart(speciesContext, {
     type: 'bar',
     data: {
         labels: speciesLabelArray,
         datasets: [{
             data: speciesCountDataArray,
+            backgroundColor: [barChartColor],
         }]
     },
     options: {
         indexAxis: 'y', // makes it horizontal
+        plugins: {
+            legend: {
+                display: false
+            },
+            title : {
+                display: true,
+                text: 'These bird species are the must killed by planes!',
+                font: {
+                    size: 25
+                }
+            }
+        },
+        scales: {
+            x: {
+                grid: {
+                    display: false
+                }
+            },
+            y: {
+                grid: {
+                    display: false
+                }
+            }
+        }
     }
 });
 
