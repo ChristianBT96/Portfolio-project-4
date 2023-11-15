@@ -25,67 +25,13 @@ const speciesChart = new Chart(speciesContext, {
     }
 });
 
-const incidentMonthArray = {
-    name:"",
-    data:[]
-}
-for (let i = 0; i < 12; i++) {
-    incidentMonthArray.push(incidentMonth[i].incident_month)
-    incidentMonthArray.push(incidentMonth[i].count)
 
-}
-console.log(incidentMonthArray)
+
+
+console.log(incidentMonthData)
 
 const options = {
-    series: [{
-        name: 'December',
-        data: [10469]
-    },
-        {
-            name: 'November',
-            data: [18141]
-        },
-        {
-            name: 'October',
-            data: [32876]
-        },
-        {
-            name: 'September',
-            data: [34890]
-        },
-        {
-            name: 'August',
-            data: [37395]
-        },
-        {
-            name: 'July',
-            data: [34950]
-        },
-        {
-            name: 'June',
-            data: [22704]
-        },
-        {
-            name: 'May',
-            data: [26518]
-        },
-        {
-            name: 'April',
-            data: [19166]
-        },
-        {
-            name: 'March',
-            data: [13234]
-        },
-        {
-            name: 'February',
-            data: [8598]
-        },
-        {
-            name: 'January',
-            data: [8928]
-        },
-    ],
+    series: incidentMonthData,
     chart: {
         height: 350,
         type: 'heatmap',
