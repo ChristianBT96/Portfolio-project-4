@@ -96,14 +96,14 @@ heatmapChart.render();
 const chart4elemnet = document.querySelector('#chart-4').getContext('2d');
 
 const chart4Data = {
-    labels: ["red", "blue", "yellow"],
+    labels: ["No info", "Warned with no impact", "Warned with impact"],
     datasets: [{
         label: "Warned",
         data: [160092, 59812, 47965],
         backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)'
+            'rgb(104,101,103)',
+            'rgb(238,0,0)',
+            'rgb(92,169,4)'
         ],
         hoverOffset: 4
     }]
