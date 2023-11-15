@@ -141,7 +141,7 @@ const chart4 = new Chart(chart4elemnet, chart4Config);
 
 
 
-const map = L.map('map').setView([56, 11], 7);
+const map = L.map('map').setView([38.82, -97.58], 4);
 
 const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -149,3 +149,9 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 });
 
 tiles.addTo(map);
+
+latitudeLongitudeSpeciesData.forEach((birdStrike) => {
+    let marker = L.marker([birdStrike.latitude, birdStrike.longitude]).addTo(map);
+    marker.bindPopup(`<b>${birdStrike.species}</b><br>${birdStrike.airport}</br>Altitude: ${birdStrike.height} ft`).openPopup();
+});
+
