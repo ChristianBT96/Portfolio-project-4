@@ -72,7 +72,7 @@ const options = {
     },
 };
 // making the heatmap
-const heatmapChart = new ApexCharts(document.querySelector(".graph-1"), options);
+const heatmapChart = new ApexCharts(document.querySelector(".graph-1 .right"), options);
 heatmapChart.render();
 
 const chart4elemnet = document.querySelector('#chart-4').getContext('2d');

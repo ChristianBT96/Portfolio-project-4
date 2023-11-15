@@ -90,11 +90,6 @@ section {
     width: 100%;
 }
 
-.graph-4 div {
-    aspect-ratio: 1/1;
-    width: 400px;
-}
-
 .content {
     display: flex;
     justify-content: center;
