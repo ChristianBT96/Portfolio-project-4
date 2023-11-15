@@ -33,7 +33,7 @@ const speciesChart = new Chart(speciesContext, {
                 display: false
             },
             title : {
-                display: true,
+                display: false, // not used for now
                 text: 'These bird species are the must killed by planes!',
                 font: {
                     size: 25
