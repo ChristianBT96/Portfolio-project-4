@@ -32,6 +32,9 @@ const options = {
         height: 350,
         type: 'heatmap',
         width: "100%",
+        toolbar: {
+            show: false
+        }
     },
     dataLabels: {
         enabled: false
