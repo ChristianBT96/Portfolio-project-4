@@ -1,6 +1,7 @@
 console.log("Hello World!");
 
 const barChartColor = "#588157"; // should be same color as css palette
+const barChartFontSize = 18;
 
 const speciesContext = document.querySelector('#species-chart').getContext('2d');
 
@@ -14,7 +15,7 @@ for (let i = 3; i < 18; i++) {
 }
 
 // Creating species horizontal bar chart
-Chart.defaults.font.size = 18;
+Chart.defaults.font.size = barChartFontSize;
 
 const speciesChart = new Chart(speciesContext, {
     type: 'bar',
