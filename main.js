@@ -25,6 +25,17 @@ const speciesChart = new Chart(speciesContext, {
     }
 });
 
+const incidentMonthArray = {
+    name:"",
+    data:[]
+}
+for (let i = 0; i < 12; i++) {
+    incidentMonthArray.push(incidentMonth[i].incident_month)
+    incidentMonthArray.push(incidentMonth[i].count)
+
+}
+console.log(incidentMonthArray)
+
 const options = {
     series: [{
         name: 'December',
