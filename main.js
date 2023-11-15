@@ -38,8 +38,6 @@ const options = {
     },
     plotOptions: {
         heatmap: {
-            shadeIntensity: 0.1,
-
             colorScale: {
                 ranges: [{
                     from: 25000,
