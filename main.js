@@ -38,7 +38,9 @@ const options = {
     },
     plotOptions: {
         heatmap: {
+            enableShades: true,
             colorScale: {
+
                 ranges: [{
                     from: 25000,
                     to: 40000,
