@@ -127,8 +127,8 @@ const chart4Data = {
         data: [160092, 59812, 47965],
         backgroundColor: [
             'rgb(104,101,103)',
-            'rgb(238,0,0)',
-            'rgb(92,169,4)'
+            'rgb(92,169,4)',
+            'rgb(238,0,0)'
         ],
         hoverOffset: 4
     }]
