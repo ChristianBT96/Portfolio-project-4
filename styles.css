@@ -134,7 +134,7 @@ footer {
         width: 100%;
     }
 
-    header span {
+    header div:nth-child(2) {
         display: none;
     }
 
