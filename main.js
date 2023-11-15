@@ -124,7 +124,7 @@ const chart4Data = {
     labels: ["No info", "Warned with no impact", "Warned with impact"],
     datasets: [{
         label: "Warned",
-        data: [160092, 59812, 47965],
+        data: warnedData,
         backgroundColor: [
             'rgb(104,101,103)',
             'rgb(92,169,4)',
