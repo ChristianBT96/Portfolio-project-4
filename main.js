@@ -25,56 +25,9 @@ const speciesChart = new Chart(speciesContext, {
     }
 });
 
+// Heatmap attributes - incidentMonthData is created in seperate js-file called incident-month.js
 const options = {
-    series: [{
-        name: 'December',
-        data: [10469]
-    },
-        {
-            name: 'November',
-            data: [18141]
-        },
-        {
-            name: 'October',
-            data: [32876]
-        },
-        {
-            name: 'September',
-            data: [34890]
-        },
-        {
-            name: 'August',
-            data: [37395]
-        },
-        {
-            name: 'July',
-            data: [34950]
-        },
-        {
-            name: 'June',
-            data: [22704]
-        },
-        {
-            name: 'May',
-            data: [26518]
-        },
-        {
-            name: 'April',
-            data: [19166]
-        },
-        {
-            name: 'March',
-            data: [13234]
-        },
-        {
-            name: 'February',
-            data: [8598]
-        },
-        {
-            name: 'January',
-            data: [8928]
-        },
-    ],
+    series: incidentMonthData,
     chart: {
         height: 350,
         type: 'heatmap',
@@ -85,12 +38,15 @@ const options = {
     },
     plotOptions: {
         heatmap: {
+            enableShades: true,
             colorScale: {
+
                 ranges: [{
                     from: 25000,
                     to: 40000,
                     color: "#EE0000",
                     name: "High risk",
+
                 }, {
                     from: 20000,
                     to: 25000,
@@ -115,6 +71,7 @@ const options = {
         text: 'Birds killed by planes over months'
     },
 };
+// making the heatmap
 const heatmapChart = new ApexCharts(document.querySelector(".graph-1"), options);
 heatmapChart.render();
 
@@ -124,7 +81,7 @@ const chart4Data = {
     labels: ["No info", "Warned with no impact", "Warned with impact"],
     datasets: [{
         label: "Warned",
-        data: [160092, 59812, 47965],
+        data: warnedData,
         backgroundColor: [
             'rgb(104,101,103)',
             'rgb(92,169,4)',
@@ -141,6 +98,17 @@ const chart4 = new Chart(chart4elemnet, chart4Config);
 
 
 
+const map = L.map('map').setView([38.82, -97.58], 4);
 
+const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+});
 
+tiles.addTo(map);
+
+latitudeLongitudeSpeciesData.forEach((birdStrike) => {
+    let marker = L.marker([birdStrike.latitude, birdStrike.longitude]).addTo(map);
+    marker.bindPopup(`<b>${birdStrike.species}</b><br>${birdStrike.airport}</br>Altitude: ${birdStrike.height} ft`).openPopup();
+});
 
