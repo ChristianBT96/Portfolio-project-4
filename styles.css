@@ -69,7 +69,7 @@ section {
     width: 80%;
     max-width: 1200px;
     padding: 25px;
-    gap: 40px; /**** gap between header and content ****/
+    gap: 40px; /**** gap between section header and section content ****/
 }
 
 .graph-2 .content,
