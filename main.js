@@ -141,6 +141,11 @@ const chart4 = new Chart(chart4elemnet, chart4Config);
 
 
 
+const map = L.map('map').setView([56, 11], 7);
 
+const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+});
 
-
+tiles.addTo(map);

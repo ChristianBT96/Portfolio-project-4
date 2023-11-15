@@ -42,6 +42,16 @@ section {
     width: 40%;
 }
 
+.graph-2 {
+    display: none;
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+    /*background-color: red;*/
+}
+
 .graph-4 div {
     aspect-ratio: 1/1;
     width: 400px;
