@@ -71,6 +71,7 @@ const options = {
         text: 'Birds killed by planes over months'
     },
 };
+// making the heatmap
 const heatmapChart = new ApexCharts(document.querySelector(".graph-1"), options);
 heatmapChart.render();
 
