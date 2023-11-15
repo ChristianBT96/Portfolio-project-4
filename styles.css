@@ -36,7 +36,10 @@ header div {
 
 nav {
     display: flex;
+    justify-content: start;
+    align-items: center;
     gap: 30px;
+    width: 100%;
 }
 
 a {
