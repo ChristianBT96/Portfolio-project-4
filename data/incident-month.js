@@ -1,39 +1,38 @@
-const incidentMonthData = [
-    {
+const incidentMonthData = [{
         name : "December",
-        data : 10469
+        data : [10469]
     }, {
         name : "November",
-        data : 18141
+        data : [18141]
     }, {
         name : "October",
-        data : 32876
+        data : [32876]
     }, {
         name : "September",
-        data : 34890
+        data : [34890]
     }, {
         name : "August",
-        data : 37395
+        data : [37395]
     }, {
         name : "July",
-        data : 34950
+        data : [34950]
     }, {
         name : "June",
-        data : 22704
+        data : [22704]
     }, {
         name : "May",
-        data : 26518
+        data : [26518]
     }, {
         name : "April",
-        data : 19166
+        data : [19166]
     }, {
         name : "March",
-        data : 13234
+        data : [13234]
     }, {
         name : "February",
-        data : 8598
+        data : [8598]
     }, {
         name : "January",
-        data : 8928
+        data : [8928]
     }
 ]

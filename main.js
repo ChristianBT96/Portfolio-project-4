@@ -25,11 +25,7 @@ const speciesChart = new Chart(speciesContext, {
     }
 });
 
-
-
-
-console.log(incidentMonthData)
-
+// Heatmap attributes - incidentMonthData is created in seperate js-file called incident-month.js
 const options = {
     series: incidentMonthData,
     chart: {
