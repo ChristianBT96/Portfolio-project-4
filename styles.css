@@ -99,6 +99,41 @@ section {
     width: 100%;
 }
 
+.graph-5 .content {
+    flex-direction: column;
+}
+
+.graph-5 .left,
+.graph-5 .right {
+    width: 100%;
+}
+
+.graph-5 .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.graph-5 span {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#gauge {
+    width: 75%;
+    height: 75%;
+}
+
+#slider {
+    background-color: var(--color-3);
+}
+
+.slider-container {
+    width: 50%;
+}
+
 #map {
     height: 400px;
     width: 100%;

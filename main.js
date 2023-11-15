@@ -145,3 +145,58 @@ latitudeLongitudeSpeciesData.forEach((birdStrike) => {
     marker.bindPopup(`<b>${birdStrike.species}</b><br>${birdStrike.airport}</br>Altitude: ${birdStrike.height} ft`).openPopup();
 });
 
+
+
+
+
+
+/////////////// GAUGE JS SLIDER /////////////
+
+const slider = document.getElementById('slider');
+const spanElement = document.querySelector('.graph-5 span');
+
+const minimumRange = 0;
+const maximumRange = 10000; // 10km in m
+
+// SLIDER HERE: https://refreshless.com/nouislider/slider-values/ //
+noUiSlider.create(slider, {
+    start: 0,
+    connect: 'lower',
+    range: {
+        'min': minimumRange,
+        'max': maximumRange
+    }
+});
+
+// GAUGE HERE: https://bernii.github.io/gauge.js/ //
+const opts = {
+    angle: -0.20, // The span of the gauge arc
+    lineWidth: 0.44, // The line thickness
+    radiusScale: 1, // Relative radius
+    pointer: {
+        length: 0.6, // // Relative to gauge radius
+        strokeWidth: 0.035, // The thickness
+        color: '#000000' // Fill color
+    },
+    limitMax: maximumRange,     // If false, max value increases automatically if value > maxValue
+    limitMin: minimumRange,     // If true, the min value of the gauge will be fixed
+    staticZones: [
+        {strokeStyle: "#D3212C", min: minimumRange, max: 1200}, // Color for each zone in gauge
+        {strokeStyle: "#FF681E", min: 1100, max: 5100},
+        {strokeStyle: "#FF980E", min: 5000, max: 9600},
+        {strokeStyle: "#069C56", min: 9400, max: maximumRange},
+    ]
+};
+
+const gaugeCanvasElement = document.querySelector('#gauge'); // your canvas element
+const gauge = new Gauge(gaugeCanvasElement).setOptions(opts); // create sexy gauge!
+gauge.maxValue = maximumRange; // set max gauge value
+gauge.setMinValue(minimumRange);  // Prefer setter over gauge.minValue = 0
+gauge.animationSpeed = 32; // set animation speed (32 is default value)
+gauge.set(1244); // set actual value
+
+// documentation: https://refreshless.com/nouislider/events-callbacks/
+slider.noUiSlider.on('update', function(values){
+    gauge.set(values);
+    spanElement.innerHTML = `${parseInt(values)} meters`;
+});
