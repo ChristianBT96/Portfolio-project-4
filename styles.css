@@ -12,11 +12,13 @@
     --color-3: #588157;
     --color-4: #3A5A40;
     --color-5: #344E41;
+    --color-shadow: #000000;
 }
 
 /*************** HEADER ***************/
 
 header {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -25,6 +27,7 @@ header {
     color: var(--color-1);
     background-color: var(--color-5);
     font-size: 20px;
+    box-shadow: 0 -6px 10px 5px var(--color-shadow);
 }
 
 header div {
@@ -119,6 +122,7 @@ footer {
     width: 100%;
     color: var(--color-1);
     background-color: var(--color-5);
+    box-shadow: 0 6px 10px 5px var(--color-shadow);
 }
 
 .footer-container {
