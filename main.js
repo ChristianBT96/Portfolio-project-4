@@ -38,12 +38,15 @@ const options = {
     },
     plotOptions: {
         heatmap: {
+            shadeIntensity: 0.1,
+
             colorScale: {
                 ranges: [{
                     from: 25000,
                     to: 40000,
                     color: "#EE0000",
                     name: "High risk",
+
                 }, {
                     from: 20000,
                     to: 25000,
