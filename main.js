@@ -1,5 +1,3 @@
-console.log("Hello World!");
-
 const barChartColor = "#588157"; // should be same color as css palette
 const barChartFontSize = 18;
 
@@ -159,10 +157,6 @@ latitudeLongitudeSpeciesData.forEach((birdStrike) => {
 });
 
 
-
-
-
-
 /////////////// GAUGE JS SLIDER /////////////
 
 const slider = document.getElementById('slider');
@@ -171,10 +165,14 @@ const animalSpanElement = document.querySelector('.killed-animals');
 const gaugeCanvasElement = document.querySelector('#gauge');
 
 const minimumRange = 0;
-const maximumRange = 10000; // 10km in m
+const maximumRange = 20000; // american feet
+
+let flightPhaseOne = 0;
+let flightPhaseTwo = 0;
+let flightPhaseThree = 0;
 
 // GAUGE HERE: https://bernii.github.io/gauge.js/ //
-const opts = {
+const gaugeChartConfig = {
     angle: -0.20, // The span of the gauge arc
     lineWidth: 0.44, // The line thickness
     radiusScale: 1, // Relative radius
@@ -186,14 +184,13 @@ const opts = {
     limitMax: true,     // If false, max value increases automatically if value > maxValue
     limitMin: true,     // If true, the min value of the gauge will be fixed
     staticZones: [
-        {strokeStyle: "#D3212C", min: minimumRange, max: 1200}, // Color for each zone in gauge
-        {strokeStyle: "#FF681E", min: 1100, max: 5100},
-        {strokeStyle: "#FF980E", min: 5000, max: 9600},
-        {strokeStyle: "#069C56", min: 9400, max: maximumRange},
+        {strokeStyle: "#D3212C", min: minimumRange, max: 3000}, // Color for each zone in gauge
+        {strokeStyle: "#FF681E", min: 3000, max: 10000},
+        {strokeStyle: "#FF980E", min: 10000, max: maximumRange}
     ]
 };
 
-const gauge = new Gauge(gaugeCanvasElement).setOptions(opts); // create sexy gauge!
+const gauge = new Gauge(gaugeCanvasElement).setOptions(gaugeChartConfig); // create sexy gauge!
 gauge.maxValue = maximumRange; // set max gauge value
 gauge.setMinValue(minimumRange);  // Prefer setter over gauge.minValue = 0
 gauge.animationSpeed = 32; // set animation speed (32 is default value)
@@ -213,21 +210,85 @@ noUiSlider.create(slider, {
 // documentation: https://refreshless.com/nouislider/events-callbacks/
 slider.noUiSlider.on('update', function(values){
     gauge.set(values);
-    meterSpanElement.innerHTML = `${parseInt(values)} meters`;
+    meterSpanElement.innerHTML = `${parseInt(values)} ft.`;
     updateAnimalSpan(values);
 });
 
-// TODO: MAKE THE INTERVALS CORRECT
 function updateAnimalSpan(values) {
     let newValue = 0;
 
-    if (values < 1000) {
-        newValue = 7000;
-    } else if (values < 5000) {
-        newValue = 5000;
-    } else if (values < 9300) {
-        newValue = 1500;
+    if (values < 3000) {
+        newValue = flightPhaseOne;
+    } else if (values < 10000) {
+        newValue = flightPhaseTwo;
+    } else if (values >= 10000) {
+        newValue = flightPhaseThree;
     }
 
-    animalSpanElement.innerText = `${newValue} animals has been killed at this height`;
+    animalSpanElement.innerText = `${newValue} animal lives has been taken at this height`;
 }
+
+/*
+    Take off Run: under 3000 ft.
+    Climb: 3000-10000 ft.
+    En Route: ----
+    Cruise: 10000 - 43000 ft.
+    Departure: ----
+    Descent: 5000 - 10000 ft.
+    Local: ----
+    Approach: 3000-5000 ft.
+    Landing Roll: 3000ft
+    Land: under 3000 ft.
+    Taxi: -----
+    Parked: -----
+    Unknown: ------
+
+    Group one: Land, Take off
+	    - under 3000 ft.
+    Group two: Climb, descent, approach
+	    - 3000 - 10000ft.
+    Group three: Cruise
+	    - 10000 - 43000 ft.
+ */
+phaseOfFlightData.forEach((flightData) => {
+    const flightPhase = flightData.PHASE_OF_FLIGHT;
+
+    switch (flightPhase) {
+        case 'Approach':
+            flightPhaseOne += flightData.COUNT;
+            break;
+        case 'Landing Roll':
+            flightPhaseOne += flightData.COUNT;
+            break;
+        case 'Take-off Run':
+            flightPhaseOne += flightData.COUNT;
+            break;
+        case 'Local':
+            flightPhaseOne += flightData.COUNT;
+            break;
+        case 'Arrival':
+            flightPhaseOne += flightData.COUNT;
+            break;
+        case 'Taxi':
+            flightPhaseOne += flightData.COUNT;
+            break;
+        case 'Parked':
+            flightPhaseOne += flightData.COUNT;
+            break
+        case 'Climb':
+            flightPhaseTwo += flightData.COUNT;
+            break;
+        case 'Descent':
+            flightPhaseTwo += flightData.COUNT;
+            break;
+        case 'En Route':
+            flightPhaseThree += flightData.COUNT;
+            break;
+        case 'Departure':
+            flightPhaseThree += flightData.COUNT;
+            break;
+        case 'Unknown':
+            break;
+    }
+
+});
