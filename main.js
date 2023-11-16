@@ -14,7 +14,7 @@ for (let i = 3; i < 18; i++) {
 
 // Creating species horizontal bar chart
 Chart.defaults.font.size = barChartFontSize;
-Chart.defaults.font.family = "Source Serif Pro";
+Chart.defaults.font.family = "Roboto";
 
 const speciesChart = new Chart(speciesContext, {
     type: 'bar',
