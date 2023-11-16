@@ -232,6 +232,7 @@ footer {
 
 .footer-right span,
 .footer-left span {
+    font-size: 22px;
     font-weight: bold;
 }
 
