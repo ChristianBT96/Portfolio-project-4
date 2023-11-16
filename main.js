@@ -323,40 +323,25 @@ function calculateFlightPhases() {
 
     phaseOfFlightData.forEach((flightData) => {
         const flightPhase = flightData.PHASE_OF_FLIGHT;
+        const count = flightData.COUNT;
 
         switch (flightPhase) {
             case 'Approach':
-                flightPhaseOne += flightData.COUNT;
-                break;
             case 'Landing Roll':
-                flightPhaseOne += flightData.COUNT;
-                break;
             case 'Take-off Run':
-                flightPhaseOne += flightData.COUNT;
-                break;
             case 'Local':
-                flightPhaseOne += flightData.COUNT;
-                break;
             case 'Arrival':
-                flightPhaseOne += flightData.COUNT;
-                break;
             case 'Taxi':
-                flightPhaseOne += flightData.COUNT;
-                break;
             case 'Parked':
-                flightPhaseOne += flightData.COUNT;
-                break
-            case 'Climb':
-                flightPhaseTwo += flightData.COUNT;
+                flightPhaseOne += count;
                 break;
+            case 'Climb':
             case 'Descent':
-                flightPhaseTwo += flightData.COUNT;
+                flightPhaseTwo += count;
                 break;
             case 'En Route':
-                flightPhaseThree += flightData.COUNT;
-                break;
             case 'Departure':
-                flightPhaseThree += flightData.COUNT;
+                flightPhaseThree += count;
                 break;
             case 'Unknown':
                 break;
