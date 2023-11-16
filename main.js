@@ -64,7 +64,17 @@ const options = {
         width: "100%",
         toolbar: {
             show: false
+        },
+    },
+    xaxis: {
+        labels: {
+            style: {
+                colors: ["#dad7cd", "#dad7cd"]
+            }
         }
+    },
+    legend: {
+        show: false
     },
     dataLabels: {
         enabled: false
