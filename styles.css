@@ -119,6 +119,7 @@ section {
 .gauge-height {
     font-size: 30px;
     font-weight: bold;
+    margin-top: -90px;
 }
 
 .killed-animals {
@@ -133,12 +134,12 @@ section {
 }
 
 #slider {
-    transform: translateY(-100px);
     background-color: var(--color-3);
 }
 
 .slider-container {
     width: 50%;
+    margin-bottom: 20px;
 }
 
 #map {
