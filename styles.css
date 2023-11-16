@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: "Comic Sans MS", serif; /* PREETTYY */
+    font-family: "SourceSerifPro", Serif;
     hyphens: auto;
     text-align: justify;
 }
@@ -16,6 +16,18 @@
     --color-shadow: #000000;
 }
 
+h1 {
+    font-size: 35px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+p {
+    font-size: 20px;
+}
+
 /*************** HEADER ***************/
 
 header {
@@ -27,7 +39,7 @@ header {
     width: 100%;
     color: var(--color-1);
     background-color: var(--color-5);
-    font-size: 20px;
+    font-size: 24px;
     box-shadow: 0 -6px 10px 5px var(--color-shadow);
 }
 
@@ -36,6 +48,10 @@ header div {
     justify-content: center;
     align-items: center;
     width: 300px;
+}
+
+header span {
+    font-size: 28px;
 }
 
 nav {
