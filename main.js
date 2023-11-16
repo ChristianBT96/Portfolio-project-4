@@ -71,10 +71,13 @@ const options = {
             style: {
                 colors: ["#dad7cd", "#dad7cd"]
             }
+        },
+        tooltip: {
+            enabled: false
         }
     },
     legend: {
-        show: false
+        show: true
     },
     dataLabels: {
         enabled: false
