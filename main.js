@@ -145,9 +145,21 @@ const options = {
 const heatmapChart = new ApexCharts(document.querySelector(".graph-1 .right"), options);
 heatmapChart.render();
 
-const chart4elemnet = document.querySelector('#chart-4').getContext('2d');
 
-const chart4Data = {
+
+
+
+/****************************************
+ ****************************************
+ *              START
+ *  Doughnut Chart - Christian
+ ****************************************
+ ****************************************/
+
+//
+const doughnutChartElement = document.querySelector('#chart-4').getContext('2d');
+// Creating the chart data using the data from the database
+const doughnutChartData = {
     labels: ["No info", "Warned with no impact", "Warned with impact"],
     datasets: [{
         label: "Warned",
@@ -160,31 +172,56 @@ const chart4Data = {
         hoverOffset: 4
     }]
 };
-const chart4Config = {
+// Configuring the chart
+const doughnutChartConfig = {
     type: "doughnut",
-    data: chart4Data
+    data: doughnutChartData
 }
-const chart4 = new Chart(chart4elemnet, chart4Config);
+// Creating the chart
+const chart4 = new Chart(doughnutChartElement, doughnutChartConfig);
+
+/****************************************
+ ****************************************
+ *              END
+ *  Doughnut Chart - Christian
+ ****************************************
+ ****************************************/
 
 
 
+/****************************************
+ ****************************************
+ *              START
+ *  Map with markers - Christian
+ ****************************************
+ ****************************************/
+
+// Leaflet map - making the map on the html page, using the id "map"
+// plus setting the starting view and the zoom level
 const map = L.map('map', {minZoom: 3, maxZoom: 19}).setView([38.82, -97.58], 3);
-
+// Leaflet tile layer - using openstreetmap.org as the map tiles
 const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 });
-
+// Adding the tiles to the map
 tiles.addTo(map);
-
+// Setting the max bounds of the map
 map.setMaxBounds(map.getBounds());
 
-
+// Looping through the latitudeLongitudeSpeciesData array and adding a marker for each object
+// Each marker has a popup with the species, airport, and altitude
 latitudeLongitudeSpeciesData.forEach((birdStrike) => {
     let marker = L.marker([birdStrike.latitude, birdStrike.longitude]).addTo(map);
     marker.bindPopup(`<b>${birdStrike.species}</b><br>${birdStrike.airport}</br>Altitude: ${birdStrike.height} ft`).openPopup();
 });
 
+/****************************************
+ ****************************************
+ *              END
+ *  Map with markers - Christian
+ ****************************************
+ ****************************************/
 
 /****************************************
  ****************************************
