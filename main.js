@@ -1,23 +1,40 @@
-const barChartColor = "#588157"; // should be same color as css palette
-const barChartFontSize = 18;
+/****************************************
+ ****************************************
+ *              START
+ *  Horizontal Bar Chart - Marcus
+ ****************************************
+ ****************************************/
 
 const speciesContext = document.querySelector('#species-chart').getContext('2d');
 
-// Make array with artist names and array with artist count
+/**
+ * Arrays to store labels and count data for the species horizontal bar chart.
+ * @type {string[]} speciesLabelArray - Array to store species labels.
+ * @type {number[]} speciesCountDataArray - Array to store corresponding count data.
+ */
 speciesLabelArray = [];
 speciesCountDataArray = [];
 
+// Populate speciesLabelArray and speciesCountDataArray from speciesData,
+// starting from index 3 up to (but not including) index 18
 for (let i = 3; i < 18; i++) {
     speciesLabelArray.push(speciesData[i].SPECIES);
     speciesCountDataArray.push(speciesData[i].COUNT);
 }
 
-// Creating species horizontal bar chart
+/**
+ * Documentation for chart.js bar chart: https://www.chartjs.org/docs/latest/charts/bar.html
+ *
+ * Configuration for horizontal bar chart and add to speciesContext element
+ */
+const barChartColor = "#588157"; // should be same color as css palette
+const barChartFontSize = 18;
+
 Chart.defaults.font.size = barChartFontSize;
 Chart.defaults.font.family = "Roboto";
 
 const speciesChart = new Chart(speciesContext, {
-    type: 'bar',
+    type: 'bar', // this makes it bar chart
     data: {
         labels: speciesLabelArray,
         datasets: [{
@@ -32,14 +49,14 @@ const speciesChart = new Chart(speciesContext, {
                 display: false
             },
             title : {
-                display: true, // not used for now
+                display: true,
                 text: 'These bird species are the must killed by planes!',
                 font: {
                     size: 25
                 }
             }
         },
-        scales: {
+        scales: { // This removes grid lines
             x: {
                 grid: {
                     display: false
@@ -53,6 +70,13 @@ const speciesChart = new Chart(speciesContext, {
         }
     }
 });
+
+/****************************************
+ ****************************************
+ *              END
+ *  Horizontal Bar Chart - Marcus
+ ****************************************
+ ****************************************/
 
 // Heatmap attributes - incidentMonthData is created in separate js-file called incident-month.js
 const options = {
@@ -161,23 +185,36 @@ latitudeLongitudeSpeciesData.forEach((birdStrike) => {
 });
 
 
-/////////////// GAUGE JS SLIDER /////////////
+/****************************************
+ ****************************************
+ *              START
+ *  Gauge chart with slider - Marcus
+ ****************************************
+ ****************************************/
 
-const slider = document.getElementById('slider');
+const slider = document.querySelector('#slider');
 const meterSpanElement = document.querySelector('.gauge-height');
 const animalSpanElement = document.querySelector('.killed-animals');
 const gaugeCanvasElement = document.querySelector('#gauge');
 
+/**
+ * The minimum and maximum range for the gauge chart and slider (in American feet).
+ */
 const minimumRange = 0;
 const maximumRange = 20000; // american feet
 
+/**
+ * See calculateFlightPhases() comment for more infomation about flightPhases
+ */
 let flightPhaseOne = 0;
 let flightPhaseTwo = 0;
 let flightPhaseThree = 0;
 
 calculateFlightPhases();
 
-// GAUGE HERE: https://bernii.github.io/gauge.js/ //
+/**
+ * Documentation for gauge.js: https://bernii.github.io/gauge.js/
+ */
 const gaugeChartConfig = {
     angle: -0.20, // The span of the gauge arc
     lineWidth: 0.44, // The line thickness
@@ -196,67 +233,91 @@ const gaugeChartConfig = {
     ]
 };
 
-const gauge = new Gauge(gaugeCanvasElement).setOptions(gaugeChartConfig); // create sexy gauge!
-gauge.maxValue = maximumRange; // set max gauge value
-gauge.setMinValue(minimumRange);  // Prefer setter over gauge.minValue = 0
-gauge.animationSpeed = 32; // set animation speed (32 is default value)
-gauge.set(1244); // set actual value
+/**
+ * Creates a new Gauge in the gauge canvas with the specified configuration.
+ */
+const gauge = new Gauge(gaugeCanvasElement).setOptions(gaugeChartConfig);
+gauge.maxValue = maximumRange;
+gauge.setMinValue(minimumRange);
+gauge.animationSpeed = 32; // (32 is default value)
+gauge.set(0);
 
-
-// SLIDER HERE: https://refreshless.com/nouislider/slider-values/ //
+/**
+ * Documentation for noUiSlider: https://refreshless.com/nouislider/slider-values/
+ *
+ * Creating noUiSlider in slider element based on config
+ */
 noUiSlider.create(slider, {
     start: 0,
-    connect: 'lower',
+    connect: 'lower', // this makes it one slider
     range: {
         'min': minimumRange,
         'max': maximumRange
     }
 });
 
-// documentation: https://refreshless.com/nouislider/events-callbacks/
+
+/**
+ * Documentation for noUiSlider eventListener: https://refreshless.com/nouislider/events-callbacks/
+ *
+ * Event handler for when slider value changes.
+ * The function updates the gauge, height and kill span in html - based on the slider values.
+ *
+ * @param {Array} values - The current values of the slider.
+ */
 slider.noUiSlider.on('update', function(values){
     gauge.set(values);
     meterSpanElement.innerHTML = `${parseInt(values)} ft.`;
     updateAnimalSpan(values);
 });
 
+/**
+ * Updates the animal kill count span element based on the slider values.
+ * @param {Array} values - The current values of the slider.
+ */
 function updateAnimalSpan(values) {
-    let newValue = 0;
+    let newKillValue = 0;
 
     if (values < 3000) {
-        newValue = flightPhaseOne;
+        newKillValue = flightPhaseOne;
     } else if (values < 10000) {
-        newValue = flightPhaseTwo;
+        newKillValue = flightPhaseTwo;
     } else if (values >= 10000) {
-        newValue = flightPhaseThree;
+        newKillValue = flightPhaseThree;
     }
 
-    animalSpanElement.innerText = `${newValue} animal lives has been taken at this height`;
+    animalSpanElement.innerText = `${newKillValue} animal lives has been taken at this height`;
 }
 
-/*
-    Reference: https://www.researchgate.net/figure/Phases-of-flight-at-various-altitude-as-modeled-in-ATOMS-A-flight-having_fig4_3428103
-
-    Take off Run: under 3000 ft.
-    Climb: 3000-10000 ft.
-    En Route: ----
-    Cruise: 10000 - 43000 ft.
-    Departure: ----
-    Descent: 5000 - 10000 ft.
-    Local: ----
-    Approach: 3000-5000 ft.
-    Landing Roll: 3000ft
-    Land: under 3000 ft.
-    Taxi: -----
-    Parked: -----
-    Unknown: ------
-
-    Group one: Land, Take off
-	    - under 3000 ft.
-    Group two: Climb, descent, approach
-	    - 3000 - 10000ft.
-    Group three: Cruise
-	    - 10000 - 43000 ft.
+/**
+ * Flight phases height reference: https://www.researchgate.net/figure/Phases-of-flight-at-various-altitude-as-modeled-in-ATOMS-A-flight-having_fig4_3428103
+ *
+ * Phases of Flight from MySQL query (phaseOfFlightData):
+ * - Take off Run: under 3000 ft.
+ * - Climb: 3000-10000 ft.
+ * - En Route: over 10000
+ * - Cruise: 10000 - 43000 ft.
+ * - Departure: over 10000 ft.
+ * - Descent: 5000 - 10000 ft.
+ * - Local: under 3000 ft.
+ * - Approach: 3000-5000 ft.
+ * - Landing Roll: 3000ft
+ * - Land: under 3000 ft.
+ * - Taxi: under 3000 ft.
+ * - Parked: under 3000 ft.
+ * - Unknown: ?
+ *
+ * Defined Groups based on height:
+ *
+ * - Group one: Approach, Landing Roll, Take-off Run, Local, Arrival, Taxi, Parked
+ *    - under 3000 ft.
+ * - Group two: Climb, Descent
+ *    - 3000 - 10000 ft.
+ * - Group three: En Route, Departure
+ *    - 10000 - 43000 ft.
+ *
+ * Calculates counts for different flight phases based on predefined data.
+ * Updates the 'flightPhaseOne', 'flightPhaseTwo', and 'flightPhaseThree' variables.
  */
 function calculateFlightPhases() {
 
@@ -302,4 +363,12 @@ function calculateFlightPhases() {
         }
 
     });
+
 }
+
+/****************************************
+ ****************************************
+ *              END
+ *  Gauge chart with slider - Marcus
+ ****************************************
+ ****************************************/
