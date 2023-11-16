@@ -23,7 +23,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 10vh;
+    height: 12vh;
     width: 100%;
     color: var(--color-1);
     background-color: var(--color-5);
@@ -56,8 +56,8 @@ a {
   }
 
 .plane-logo {
-    width: 140px;
-    height: 80px;
+    aspect-ratio: 1.1/1;
+    height: 85px;
 }
 
 /*************** HEADER ***************/
