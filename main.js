@@ -53,7 +53,7 @@ const speciesChart = new Chart(speciesContext, {
     }
 });
 
-// Heatmap attributes - incidentMonthData is created in seperate js-file called incident-month.js
+// Heatmap attributes - incidentMonthData is created in separate js-file called incident-month.js
 const options = {
     series: incidentMonthData,
     chart: {
