@@ -212,7 +212,9 @@ map.setMaxBounds(map.getBounds());
 // Looping through the latitudeLongitudeSpeciesData array and adding a marker for each object
 // Each marker has a popup with the species, airport, and altitude
 latitudeLongitudeSpeciesData.forEach((birdStrike) => {
+    // Creating the marker and adding it to the map
     let marker = L.marker([birdStrike.latitude, birdStrike.longitude]).addTo(map);
+    // Adding the popup to the marker
     marker.bindPopup(`<b>${birdStrike.species}</b><br>${birdStrike.airport}</br>Altitude: ${birdStrike.height} ft`).openPopup();
 });
 
