@@ -1,12 +1,15 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: Roboto, Serif;
+    font-family: Roboto, Serif, serif;
     hyphens: auto;
     text-align: justify;
 }
 
-/* Color Palette */
+/*********************************************/
+/*************** COLOR PALETTE ***************/
+/*********************************************/
+
 :root {
     --color-1: #DAD7CD;
     --color-2: #A3B18A;
@@ -28,14 +31,16 @@ p {
     font-size: 20px;
 }
 
-/*************** HEADER ***************/
+/********************************************/
+/*************** HEADER START ***************/
+/********************************************/
 
 header {
-    position: relative;
+    position: relative; /* Needed for box-shadow to work */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 12vh;
+    height: 14vh;
     width: 100%;
     color: var(--color-1);
     background-color: var(--color-5);
@@ -76,7 +81,13 @@ a {
     height: 85px;
 }
 
-/*************** HEADER ***************/
+/******************************************/
+/*************** HEADER END ***************/
+/******************************************/
+
+/******************************************/
+/*************** MAIN START ***************/
+/******************************************/
 
 main {
     color: var(--color-5);
@@ -87,7 +98,7 @@ main {
     align-items: center;
     width: 100%;
     gap: 20px; /**** gap between sections ****/
-    padding-bottom: 50px;
+    padding: 50px 0;
 }
 
 section {
@@ -135,7 +146,7 @@ section {
 .gauge-height {
     font-size: 30px;
     font-weight: bold;
-    margin-top: -90px;
+    margin-top: -70px;
 }
 
 .killed-animals {
@@ -174,7 +185,13 @@ section {
     width: 50%;
 }
 
+/********************************************/
+/*************** MAIN END *******************/
+/********************************************/
+
+/********************************************/
 /*************** FOOTER START ***************/
+/********************************************/
 
 footer {
     display: flex;
@@ -218,9 +235,14 @@ footer {
     font-weight: bold;
 }
 
-/*************** FOOTER END ***************/
+/********************************************/
+/*************** FOOTER END *****************/
+/********************************************/
 
-/*************** MEDIA START ***************/
+/********************************************/
+/*************** MEDIA START ****************/
+/********************************************/
+
 @media screen and (max-width: 900px) {
     .content {
         flex-direction: column;
@@ -229,6 +251,10 @@ footer {
 
     .left, .right {
         width: 100%;
+    }
+
+    header div:nth-child(1) {
+        width: 150px;
     }
 
     header div:nth-child(2) {
@@ -252,4 +278,7 @@ footer {
     }
 
 }
-/*************** MEDIA END ***************/
+
+/******************************************/
+/*************** MEDIA END ****************/
+/******************************************/
