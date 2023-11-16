@@ -234,6 +234,8 @@ function updateAnimalSpan(values) {
 }
 
 /*
+    Reference: https://www.researchgate.net/figure/Phases-of-flight-at-various-altitude-as-modeled-in-ATOMS-A-flight-having_fig4_3428103
+
     Take off Run: under 3000 ft.
     Climb: 3000-10000 ft.
     En Route: ----
