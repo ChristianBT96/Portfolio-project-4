@@ -129,8 +129,9 @@ section {
 }
 
 #gauge {
-    width: 100%;
-    height: 100%;
+    width: 100% !important; /* without important the width is overriden in browser */
+    height: 100% !important; /* without important the height is overriden in browser */
+    max-width: 1200px;
 }
 
 #slider {
