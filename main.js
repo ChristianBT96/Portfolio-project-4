@@ -174,6 +174,8 @@ let flightPhaseOne = 0;
 let flightPhaseTwo = 0;
 let flightPhaseThree = 0;
 
+calculateFlightPhases();
+
 // GAUGE HERE: https://bernii.github.io/gauge.js/ //
 const gaugeChartConfig = {
     angle: -0.20, // The span of the gauge arc
@@ -253,45 +255,48 @@ function updateAnimalSpan(values) {
     Group three: Cruise
 	    - 10000 - 43000 ft.
  */
-phaseOfFlightData.forEach((flightData) => {
-    const flightPhase = flightData.PHASE_OF_FLIGHT;
+function calculateFlightPhases() {
 
-    switch (flightPhase) {
-        case 'Approach':
-            flightPhaseOne += flightData.COUNT;
-            break;
-        case 'Landing Roll':
-            flightPhaseOne += flightData.COUNT;
-            break;
-        case 'Take-off Run':
-            flightPhaseOne += flightData.COUNT;
-            break;
-        case 'Local':
-            flightPhaseOne += flightData.COUNT;
-            break;
-        case 'Arrival':
-            flightPhaseOne += flightData.COUNT;
-            break;
-        case 'Taxi':
-            flightPhaseOne += flightData.COUNT;
-            break;
-        case 'Parked':
-            flightPhaseOne += flightData.COUNT;
-            break
-        case 'Climb':
-            flightPhaseTwo += flightData.COUNT;
-            break;
-        case 'Descent':
-            flightPhaseTwo += flightData.COUNT;
-            break;
-        case 'En Route':
-            flightPhaseThree += flightData.COUNT;
-            break;
-        case 'Departure':
-            flightPhaseThree += flightData.COUNT;
-            break;
-        case 'Unknown':
-            break;
-    }
+    phaseOfFlightData.forEach((flightData) => {
+        const flightPhase = flightData.PHASE_OF_FLIGHT;
 
-});
+        switch (flightPhase) {
+            case 'Approach':
+                flightPhaseOne += flightData.COUNT;
+                break;
+            case 'Landing Roll':
+                flightPhaseOne += flightData.COUNT;
+                break;
+            case 'Take-off Run':
+                flightPhaseOne += flightData.COUNT;
+                break;
+            case 'Local':
+                flightPhaseOne += flightData.COUNT;
+                break;
+            case 'Arrival':
+                flightPhaseOne += flightData.COUNT;
+                break;
+            case 'Taxi':
+                flightPhaseOne += flightData.COUNT;
+                break;
+            case 'Parked':
+                flightPhaseOne += flightData.COUNT;
+                break
+            case 'Climb':
+                flightPhaseTwo += flightData.COUNT;
+                break;
+            case 'Descent':
+                flightPhaseTwo += flightData.COUNT;
+                break;
+            case 'En Route':
+                flightPhaseThree += flightData.COUNT;
+                break;
+            case 'Departure':
+                flightPhaseThree += flightData.COUNT;
+                break;
+            case 'Unknown':
+                break;
+        }
+
+    });
+}
