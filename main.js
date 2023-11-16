@@ -29,6 +29,7 @@ for (let i = 3; i < 18; i++) {
  */
 const barChartColor = "#588157"; // should be same color as css palette
 const barChartFontSize = 18;
+const barChartTitle = 'These bird species are the must killed by planes!';
 
 Chart.defaults.font.size = barChartFontSize;
 Chart.defaults.font.family = "Roboto";
@@ -50,7 +51,7 @@ const speciesChart = new Chart(speciesContext, {
             },
             title : {
                 display: true,
-                text: 'These bird species are the must killed by planes!',
+                text: barChartTitle,
                 font: {
                     size: 25
                 }
