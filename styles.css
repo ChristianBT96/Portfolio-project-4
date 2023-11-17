@@ -126,6 +126,14 @@ section {
     width: 100%;
 }
 
+.graph-3 .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
 .graph-5 .content {
     flex-direction: column;
 }
@@ -172,6 +180,10 @@ section {
 #map {
     height: 400px;
     width: 100%;
+    border: 2px solid var(--color-5);
+}
+
+#globe {
     border: 2px solid var(--color-5);
 }
 
