@@ -414,3 +414,29 @@ function calculateFlightPhases() {
  *  Gauge chart with slider - Marcus
  ****************************************
  ****************************************/
+
+const globeElement = document.querySelector('#globe');
+const heatmapData = [];
+latitudeLongitudeSpeciesData.forEach((birdStrike) => {
+   const obj = {
+    lat :birdStrike.latitude,
+    lng: birdStrike.longitude,
+    weight: 0.01
+    };
+
+    heatmapData.push(obj);
+});
+
+
+
+const myGlobe = Globe();
+myGlobe(globeElement)
+    .globeImageUrl('//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg')
+    .heatmapsData([heatmapData])
+    .heatmapPointLat('lat')
+    .heatmapPointLng('lng')
+    .heatmapPointWeight('weight')
+    .heatmapTopAltitude(0.01)
+    .enablePointerInteraction(false)
+    .width(0.75 * window.innerWidth)
+    .height(0.8 * window.innerHeight)
