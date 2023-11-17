@@ -99,6 +99,7 @@ main {
     width: 100%;
     gap: 20px; /**** gap between sections ****/
     padding: 50px 0;
+    overflow: hidden; /* Needed for bar chart overflow without enable side scroll */
 }
 
 section {
@@ -127,7 +128,12 @@ section {
 
 .graph-2 .left {
     height: 60svh;
-    width: 100%;
+    width: 120%;
+}
+
+.graph-2 .left span {
+    font-weight: bold;
+    font-size: 3.25svh;
 }
 
 .graph-3 .right {
@@ -281,6 +287,12 @@ footer {
 
     header div:nth-child(2) {
         display: none;
+    }
+
+
+    .graph-2 .left span {
+        text-align: center;
+        font-size: 4svw;
     }
 
     .graph-4 .content .left {

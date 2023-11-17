@@ -11,25 +11,39 @@ const speciesContext = document.querySelector('#species-chart').getContext('2d')
  * Arrays to store labels and count data for the species horizontal bar chart.
  * @type {string[]} speciesLabelArray - Array to store species labels.
  * @type {number[]} speciesCountDataArray - Array to store corresponding count data.
+ * @type {string[]} barChartColorArray - Array to store corresponding color data.
  */
 speciesLabelArray = [];
 speciesCountDataArray = [];
+barChartColorArray = [];
 
-// Populate speciesLabelArray and speciesCountDataArray from speciesData,
-// starting from index 3 up to (but not including) index 15
-for (let i = 3; i < 15; i++) {
-    speciesLabelArray.push(speciesData[i].SPECIES);
-    speciesCountDataArray.push(speciesData[i].COUNT);
+const barChartColor = "#8f8f8f"; // should be same donut chart gray
+const unknownBirdsColor = "#D3212C" // should be red to hightlight
+
+// Populate speciesLabelArray and speciesCountDataArray from speciesData, and add corrosponding color from barChartColorArray
+// starting from index 15 down to 0 (this is done such that the unknown bird data is added last)
+let unknownBirdCount = 0;
+
+for (let i = 15; i >= 0; i--) {
+    if (speciesData[i].SPECIES.includes('Unknown')){
+        unknownBirdCount += speciesData[i].COUNT;
+    } else {
+        speciesLabelArray.push(speciesData[i].SPECIES);
+        speciesCountDataArray.push(speciesData[i].COUNT);
+        barChartColorArray.push(barChartColor);
+    }
 }
+
+speciesLabelArray.push('Unkown birds');
+speciesCountDataArray.push(unknownBirdCount);
+barChartColorArray.push(unknownBirdsColor);
 
 /**
  * Documentation for chart.js bar chart: https://www.chartjs.org/docs/latest/charts/bar.html
  *
  * Configuration for horizontal bar chart and add to speciesContext element
  */
-const barChartColor = "#588157"; // should be same color as css palette
 const barChartFontSize = 18;
-const barChartTitle = 'These bird species are the must killed by planes!';
 
 Chart.defaults.font.size = barChartFontSize;
 Chart.defaults.font.family = "Roboto";
@@ -40,7 +54,7 @@ const speciesChart = new Chart(speciesContext, {
         labels: speciesLabelArray,
         datasets: [{
             data: speciesCountDataArray,
-            backgroundColor: [barChartColor],
+            backgroundColor: barChartColorArray
         }]
     },
     options: {
@@ -50,25 +64,20 @@ const speciesChart = new Chart(speciesContext, {
         plugins: {
             legend: {
                 display: false
-            },
-            title : {
-                display: true,
-                text: barChartTitle,
-                font: {
-                    size: 25
-                }
             }
         },
         scales: { // This removes grid lines
             x: {
                 grid: {
                     display: false
-                }
+                },
+                max: unknownBirdCount // x-axes maximum
             },
             y: {
                 grid: {
                     display: false
-                }
+                },
+                reverse: true
             }
         }
     }
