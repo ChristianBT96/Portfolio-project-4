@@ -98,6 +98,8 @@ const heatmapOptions = {
         toolbar: {
             show: false // removes toolbar, which is a menu with a few options that was cluttering the chart.
         },
+        fontFamily: "Roboto"
+
     },
     xaxis: {
         labels: {
