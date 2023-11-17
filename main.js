@@ -224,28 +224,37 @@ const chart4 = new Chart(doughnutChartElement, doughnutChartConfig);
  ****************************************
  ****************************************/
 
-// Leaflet map - making the map on the html page, using the id "map"
-// plus setting the starting view and the zoom level
-// Documentation for Leaflet: https://leafletjs.com/reference-1.7.1.html
-const map = L.map('map', {minZoom: 3, maxZoom: 19}).setView([38.82, -97.58], 3);
-// Leaflet tile layer - using openstreetmap.org as the map tiles
-const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-});
-// Adding the tiles to the map
-tiles.addTo(map);
-// Setting the max bounds of the map
-map.setMaxBounds(map.getBounds());
+// eventlistener: Marcus
+// Because the map and tiles takes long to load on the webpage, we load it after the other elements.
+document.addEventListener('DOMContentLoaded', loadMapGraph);
 
-// Looping through the latitudeLongitudeSpeciesData array and adding a marker for each object
-// Each marker has a popup with the species, airport, and altitude
-latitudeLongitudeSpeciesData.forEach((birdStrike) => {
-    // Creating the marker and adding it to the map
-    let marker = L.marker([birdStrike.latitude, birdStrike.longitude]).addTo(map);
-    // Adding the popup to the marker
-    marker.bindPopup(`<b>${birdStrike.species}</b><br>${birdStrike.airport}</br>Altitude: ${birdStrike.height} ft`).openPopup();
-});
+function loadMapGraph() {
+    // Leaflet map - making the map on the html page, using the id "map"
+    // plus setting the starting view and the zoom level
+    // Documentation for Leaflet: https://leafletjs.com/reference-1.7.1.html
+    const map = L.map('map', {minZoom: 3, maxZoom: 19}).setView([38.82, -97.58], 3);
+    // Leaflet tile layer - using openstreetmap.org as the map tiles
+    const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    });
+
+    // Adding the tiles to the map
+    tiles.addTo(map);
+    // Setting the max bounds of the map
+    map.setMaxBounds(map.getBounds());
+
+    // Looping through the latitudeLongitudeSpeciesData array and adding a marker for each object
+    // Each marker has a popup with the species, airport, and altitude
+    latitudeLongitudeSpeciesData.forEach((birdStrike) => {
+        // Creating the marker and adding it to the map
+        let marker = L.marker([birdStrike.latitude, birdStrike.longitude]).addTo(map);
+
+        // Adding the popup to the marker
+        marker.bindPopup(`<b>${birdStrike.species}</b><br>${birdStrike.airport}</br>Altitude: ${birdStrike.height} ft`).openPopup();
+    });
+
+}
 
 /****************************************
  ****************************************
