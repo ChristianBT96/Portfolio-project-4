@@ -427,7 +427,7 @@ latitudeLongitudeSpeciesData.forEach((birdStrike) => {
     heatmapData.push(obj);
 });
 
-
+const graphThreeSectionElement = document.querySelector('.graph-3 .content .right');
 
 const myGlobe = Globe();
 myGlobe(globeElement)
@@ -438,5 +438,5 @@ myGlobe(globeElement)
     .heatmapPointWeight('weight')
     .heatmapTopAltitude(0.01)
     .enablePointerInteraction(false)
-    .width(0.8 * window.innerWidth)
+    .width(parseInt(graphThreeSectionElement.offsetWidth))
     .height(0.8 * window.innerHeight)
