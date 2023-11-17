@@ -173,7 +173,7 @@ heatmapChart.render(); // making the heatmap
  ****************************************
  ****************************************/
 
-//
+// Documentation for chart.js doughnut chart: https://www.chartjs.org/docs/latest/charts/doughnut.html
 const doughnutChartElement = document.querySelector('#chart-4').getContext('2d');
 // Creating the chart data using the data from the database
 const doughnutChartData = {
@@ -215,6 +215,7 @@ const chart4 = new Chart(doughnutChartElement, doughnutChartConfig);
 
 // Leaflet map - making the map on the html page, using the id "map"
 // plus setting the starting view and the zoom level
+// Documentation for Leaflet: https://leafletjs.com/reference-1.7.1.html
 const map = L.map('map', {minZoom: 3, maxZoom: 19}).setView([38.82, -97.58], 3);
 // Leaflet tile layer - using openstreetmap.org as the map tiles
 const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
