@@ -34,7 +34,7 @@ for (let i = 15; i >= 0; i--) {
     }
 }
 
-speciesLabelArray.push('Unkown birds');
+speciesLabelArray.push('Unknown birds');
 speciesCountDataArray.push(unknownBirdCount);
 barChartColorArray.push(unknownBirdsColor);
 
@@ -77,7 +77,7 @@ const speciesChart = new Chart(speciesContext, {
                 grid: {
                     display: false
                 },
-                reverse: true
+                reverse: true // reverse to have unknown bird first
             }
         }
     }
