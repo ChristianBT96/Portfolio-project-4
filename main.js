@@ -419,15 +419,17 @@ function calculateFlightPhases() {
 /****************************************
  ****************************************
  *              START
- *  Heatmap map chart - Christian
+ *  Heatmap map chart - Christian / Marcus
  ****************************************
  ****************************************/
 
 // Creating the heatmap
 // Getting the html element where the heatmap should be placed
 const globeElement = document.querySelector('#globe');
+
 // Creating an array to store the data for the heatmap
 const heatmapData = [];
+
 // Looping through the latitudeLongitudeSpeciesData array and adding the data to the heatmapData array
 latitudeLongitudeSpeciesData.forEach((birdStrike) => {
    const obj = {
@@ -441,8 +443,11 @@ latitudeLongitudeSpeciesData.forEach((birdStrike) => {
 
 // Getting the html element where the heatmap should be placed
 const graphThreeSectionElement = document.querySelector('.graph-3 .content .right');
+
 // Creating the globe
+// Documentation for globe.gl: https://globe.gl/
 const myGlobe = Globe();
+
 // Setting the attributes for the globe
 myGlobe(globeElement)
     .globeImageUrl('//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg')
@@ -459,6 +464,6 @@ myGlobe(globeElement)
 /****************************************
  ****************************************
  *              END
- *  Heatmap map chart - Christian
+ *  Heatmap map chart - Christian / Marcus
  ****************************************
  ****************************************/
