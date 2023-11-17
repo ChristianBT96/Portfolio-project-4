@@ -79,37 +79,46 @@ const speciesChart = new Chart(speciesContext, {
  ****************************************
  ****************************************/
 
-// Heatmap attributes - incidentMonthData is created in separate js-file called incident-month.js
-const options = {
-    series: incidentMonthData,
+
+/****************************************
+ ****************************************
+ *              START
+ *      Heatmap Chart - Jonathan
+ ****************************************
+ ****************************************/
+// Documentation for ApexChart.js heatmap is found at: https://apexcharts.com/docs/chart-types/heatmap-chart/
+// Heatmap attributes
+
+const heatmapOptions = {
+    series: incidentMonthData, // incidentMonthData is created in separate js-file called incident-month.js
     chart: {
         height: 350,
         type: 'heatmap',
         width: "100%",
         toolbar: {
-            show: false
+            show: false // removes toolbar, which is a menu with a few options that was cluttering the chart.
         },
     },
     xaxis: {
         labels: {
             style: {
-                colors: ["#dad7cd", "#dad7cd"]
+                colors: ["#dad7cd", "#dad7cd"] // work-around to remove x-axis: Coloured the labels on x-axis same colour as background.
             }
         },
         tooltip: {
-            enabled: false
+            enabled: false // removes x-axis tooltip, which showed the x-axis when hovering a specific point in chart.
         }
     },
     legend: {
         show: true
     },
     dataLabels: {
-        enabled: false
+        enabled: false // Removes data from directly printed on chart, deemed too cluttering.
     },
     plotOptions: {
         heatmap: {
-            enableShades: true,
-            colorScale: {
+            enableShades: true, // on by default - Allows different shades of color chosen below.
+            colorScale: { // allows choice in what colors should be displayed in what range in the data.
 
                 ranges: [{
                     from: 25000,
@@ -141,10 +150,16 @@ const options = {
         text: 'Birds killed by planes over months'
     },
 };
-// making the heatmap
-const heatmapChart = new ApexCharts(document.querySelector(".graph-1 .right"), options);
-heatmapChart.render();
 
+const heatmapChart = new ApexCharts(document.querySelector(".graph-1 .right"),heatmapOptions); // setting up heatmap, and selecting where in the html it should be applied to.
+heatmapChart.render(); // making the heatmap
+
+/****************************************
+ ****************************************
+ *              END
+ *      Heatmap chart - Jonathan
+ ****************************************
+ ****************************************/
 
 
 
