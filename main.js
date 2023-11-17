@@ -16,8 +16,8 @@ speciesLabelArray = [];
 speciesCountDataArray = [];
 
 // Populate speciesLabelArray and speciesCountDataArray from speciesData,
-// starting from index 3 up to (but not including) index 18
-for (let i = 3; i < 18; i++) {
+// starting from index 3 up to (but not including) index 15
+for (let i = 3; i < 15; i++) {
     speciesLabelArray.push(speciesData[i].SPECIES);
     speciesCountDataArray.push(speciesData[i].COUNT);
 }
@@ -45,6 +45,8 @@ const speciesChart = new Chart(speciesContext, {
     },
     options: {
         indexAxis: 'y', // makes it horizontal
+        maintainAspectRatio: false, // allows the chart to adjust its aspect ratio for mobile view
+        responsive: true, // makes the chart responsive
         plugins: {
             legend: {
                 display: false

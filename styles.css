@@ -119,10 +119,14 @@ section {
     width: 100%;
 }
 
-.graph-2 .left,
 .graph-2 .right,
 .graph-3 .left,
 .graph-3 .right {
+    width: 100%;
+}
+
+.graph-2 .left {
+    height: 60svh;
     width: 100%;
 }
 
