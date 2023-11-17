@@ -343,7 +343,7 @@ function updateAnimalSpan(values) {
         newKillValue = flightPhaseThree;
     }
 
-    animalSpanElement.innerText = `${newKillValue} animal lives has been taken at this height`;
+    animalSpanElement.innerText = `${newKillValue} animal lives has been taken at these heights`;
 }
 
 /**
